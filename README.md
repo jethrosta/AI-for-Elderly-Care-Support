@@ -223,20 +223,20 @@ Meskipun namanya "regression", Logistic Regression itu sebenarnya algoritma klas
 **Cara Kerja :**
 - Logistic Regression digunakan untuk memprediksi probabilitas sebuah data masuk ke salah satu dari dua kategori (contoh: 0 atau 1, Spam atau Bukan Spam).
 - Dasarnya, Logistic Regression menghitung sebuah nilai menggunakan persamaan linear seperti:
-   $$ 
-      {z} =  w_0 + w_1x_1 + w_2x_2 + ... + w_nx_n
-   $$
+  
+   $${z} =  w_0 + w_1x_1 + w_2x_2 + ... + w_nx_n$$
+  
    (di mana $w$ itu bobot/koefisien, dan $x$ itu fitur input)
 - Tapi, supaya hasilnya berupa probabilitas (antara 0 dan 1), nilai ${z}$ ini dimasukkan ke fungsi sigmoid:
-$$
-   \sigma(z) = \frac{1}{1 + e^{-z}}
-$$
+
+  $$\sigma(z) = \frac{1}{1 + e^{-z}}$$
 - Setelah dapat hasil dari fungsi sigmoid, biasanya ada threshold (misalnya 0.5) untuk mengambil keputusan:
    - Jika probabilitas > 0.5 → Prediksi 1
    - Jika probabilitas ≤ 0.5 → Prediksi 0
 ### Decision Tree:
 ---
 ![](https://scikit-learn.org/stable/_images/sphx_glr_plot_iris_dtc_002.png)
+
 Decision Tree adalah algoritma yang membuat keputusan dengan struktur seperti pohon, di mana setiap cabang mewakili pilihan berdasarkan fitur tertentu.
 **Cara Kerja :**
 - Mulai dari seluruh dataset.
@@ -309,63 +309,48 @@ Dalam proyek ini, beberapa metrik evaluasi digunakan untuk menilai performa masi
 
 Berikut adalah metrik-metrik yang digunakan:
 
-<h4>1. Accuracy</h4>
+### 1. Accuracy
 
 Formula:
 
-$$ 
-   \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN} 
-   $$
-​
- 
+$$\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}$$
+
 Digunakan sebagai gambaran umum terhadap performa model, namun tidak cocok sebagai metrik utama dalam kasus dengan data tidak seimbang karena dapat menyesatkan.
 
-<h4>2. Precision</h4>
+### 2. Precision
 
 Formula:
 
-$$ 
-   \text{Precision} = \frac{TP}{TP + FP} 
-   $$
-​
- 
-Metrik ini mengukur seberapa banyak dari prediksi positif yang benar-benar relevan. Berguna untuk menghindari false alarms yang terlalu sering (False Positive).
+$$\text{Precision} = \frac{TP}{TP + FP}$$
+<br> Metrik ini mengukur seberapa banyak dari prediksi positif yang benar-benar relevan. Berguna untuk menghindari false alarms yang terlalu sering (False Positive).
 
-<h4>3. Recall (Sensitivity)</h4>
+### 3. Recall (Sensitivity)
 
 Formula:
 
-$$ 
-   \text{Recall} = \frac{TP}{TP + FN} 
-$$
-​
- 
-Sangat penting dalam konteks ini karena ingin memastikan kejadian "alert" tidak terlewatkan (minimalkan False Negative).
+$$\text{Recall} = \frac{TP}{TP + FN}$$
+​<br> Sangat penting dalam konteks ini karena ingin memastikan kejadian "alert" tidak terlewatkan (minimalkan False Negative).
 
-<h4>4. F4-Score</h4>
+### 4. F4-Score
 
 Formula:
 
-$$ 
-   \text{F4} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}} 
-   $$
-​
- 
-F4 Score menggabungkan precision dan recall dalam satu metrik harmonik, ideal untuk data imbalance.
+$$\text{F4} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$$
+​<br>F4 Score menggabungkan precision dan recall dalam satu metrik harmonik, ideal untuk data imbalance.
 
-<h4>5. ROC-AUC Score</h4>
+### 5. ROC-AUC Score
 
 Digunakan pada model Random Forest untuk mengukur kemampuan model dalam membedakan antara kelas positif dan negatif. Semakin mendekati 4, semakin baik performanya.
 
-<h4>6. PR-AUC (Precision-Recall AUC)</h4>
+### 6. PR-AUC (Precision-Recall AUC)
 
 Digunakan pada XGBoost sebagai metrik utama untuk mengukur performa terhadap kelas minoritas dengan mempertimbangkan trade-off antara precision dan recall.
 
-<h4>7. Log Loss</h4>
+### 7. Log Loss
 
 Mengukur seberapa baik model memprediksi probabilitas yang mendekati nilai sebenarnya. Log loss yang rendah menunjukkan prediksi yang baik dan kalibrasi model yang baik.
 
-<h4>8. Confusion Matrix</h4>
+### 8. Confusion Matrix
 
 Memberikan gambaran menyeluruh tentang distribusi prediksi benar/salah dari masing-masing kelas.
 
