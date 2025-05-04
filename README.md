@@ -20,8 +20,7 @@
     <ul>
          <li><a href="#pembersihan-data">Pembersihan Data</a></li>
          <li><a href="#transformasi-data">Transformasi Data</a></li>
-         <li><a href="#pembagian-data">Pembagian Data</a></li>
-         <li><a href="#penanganan-data-imbalanced">Penanganan Data Imbalanced</a></li>
+         <li><a href="#data-spliting">Pembagian Data</a></li>
       </ul>
     <li><a href="#modeling">Modeling</a></li>
     <ul>
@@ -37,7 +36,10 @@
 
 ## Latar Belakang
 ***
-![Elderly with AI](https://storage.googleapis.com/kaggle-datasets-images/6961483/11157294/7702c0e32b239a2325b1642bf23ae54f/dataset-cover.jpg?t=2025-03-25-07-09-14)
+<div align='center'>
+  <img src = 'assets/dataset-cover.jpg'>
+</div>
+![Elderly with AI](assets/dataset-cover.jpg)
 
 Indonesia telah memasuki fase "*aging population*" dengan jumlah lansia mencapai sekitar 12% dari total penduduk pada tahun 2023, setara dengan 29 juta jiwa. Diproyeksikan, angka ini akan meningkat menjadi 20% atau sekitar 50 juta jiwa pada tahun 2045.​ Seiring bertambahnya usia, lansia menghadapi risiko kesehatan seperti penyakit kronis, penurunan kognitif, dan keterbatasan mobilitas. Hal ini menuntut sistem perawatan yang lebih responsif dan berkelanjutan.
 Agen AI dapat memantau tanda-tanda vital lansia secara real-time, mendeteksi anomali, dan memberikan peringatan dini kepada tenaga medis atau keluarga. Hal ini memungkinkan intervensi cepat dan mencegah kondisi kesehatan yang memburuk.​ Agen AI dapat berinteraksi dengan lansia, memberikan dukungan emosional, dan mengurangi rasa kesepian. Interaksi ini penting untuk kesejahteraan mental lansia. Agen AI dapat mengingatkan lansia untuk mengonsumsi obat sesuai jadwal, mengurangi risiko kelalaian, dan memastikan kepatuhan terhadap regimen pengobatan.​ Dengan meningkatnya jumlah lansia di Indonesia, integrasi agen AI dalam sistem perawatan kesehatan menjadi solusi yang tidak hanya efisien tetapi juga meningkatkan kualitas hidup lansia. Penggunaan dataset yang relevan dapat mempercepat pengembangan teknologi ini, memastikan bahwa lansia mendapatkan perawatan yang mereka butuhkan secara tepat waktu dan personal.​
@@ -204,15 +206,15 @@ Kondisi Data :
 ## Data Preparation
 Pada bagian ini adalah langkah-langkah yang diambil untuk mempersiapkan data sebelum melakukan analisis dan pemodelan. Proses ini penting untuk memastikan bahwa data yang digunakan dalam model adalah bersih, relevan, dan siap untuk analisis lebih lanjut. Berikut adalah teknik data preparation yang diterapkan dalam notebook:
 
-### 1. Pembersihan Data
+### Pembersihan Data
 - Drop User-ID pada df_health_monitor
 - Memisahkan data Sistolik dan Diastolik
 
-### 2. Transformasi Data
+### Transformasi Data
 - **Encoding Kategori**: Variabel kategori diubah menjadi format numerik menggunakan teknik *label encoding* pada kolom kategorikal seperti fitur `Alert Triggered`.
 - **Binning** : Melakukan Binning pada data Diastolik dan Sistolik
 
-### 3. Data Spliting
+### Data Spliting
 Data dibagi menjadi set pelatihan dan set pengujian untuk dimana fitur prediktor `X` terdiri dari :
 - 'Timestamp',
 - 'Heart Rate', 
@@ -224,7 +226,6 @@ Data dibagi menjadi set pelatihan dan set pengujian untuk dimana fitur prediktor
 - 'SpO₂ Below Threshold (Yes/No)',
 - 'Kategori_Tekanan_Darah'
 Sedangkan target `y` berisi `Alert Triggered (Yes/No)`
-
 
 Dengan langkah-langkah di atas, data telah dipersiapkan dengan baik untuk analisis dan pemodelan, memastikan bahwa model yang dibangun dapat memberikan hasil yang akurat dan dapat diandalkan.
 
@@ -243,20 +244,20 @@ Meskipun namanya "regression", Logistic Regression itu sebenarnya algoritma klas
 **Cara Kerja :**
 - Logistic Regression digunakan untuk memprediksi probabilitas sebuah data masuk ke salah satu dari dua kategori (contoh: 0 atau 1, Spam atau Bukan Spam).
 - Dasarnya, Logistic Regression menghitung sebuah nilai menggunakan persamaan linear seperti:
-   $$ 
-      {z} =  w_0 + w_1x_1 + w_2x_2 + ... + w_nx_n
-   $$
+   $`{z} =  w_0 + w_1x_1 + w_2x_2 + ... + w_nx_n`$
    (di mana $w$ itu bobot/koefisien, dan $x$ itu fitur input)
 - Tapi, supaya hasilnya berupa probabilitas (antara 0 dan 1), nilai ${z}$ ini dimasukkan ke fungsi sigmoid:
-$$
-   \sigma(z) = \frac{1}{1 + e^{-z}}
-$$
+  $`\sigma(z) = \frac{1}{1 + e^{-z}}`$
 - Setelah dapat hasil dari fungsi sigmoid, biasanya ada threshold (misalnya 0.5) untuk mengambil keputusan:
    - Jika probabilitas > 0.5 → Prediksi 1
    - Jika probabilitas ≤ 0.5 → Prediksi 0
 ### Decision Tree:
 ---
-![](https://scikit-learn.org/stable/_images/sphx_glr_plot_iris_dtc_002.png)
+<div align='center'>
+    <img src='https://scikit-learn.org/stable/_images/sphx_glr_plot_iris_dtc_002.png' width='100%' >  
+</div>
+
+
 Decision Tree adalah algoritma yang membuat keputusan dengan struktur seperti pohon, di mana setiap cabang mewakili pilihan berdasarkan fitur tertentu.
 **Cara Kerja :**
 - Mulai dari seluruh dataset.
@@ -333,9 +334,9 @@ Berikut adalah metrik-metrik yang digunakan:
 
 Formula:
 
-$$ 
-   \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN} 
-   $$
+<div align='center'>
+  <img src='https://latex.codecogs.com/png.image?\dpi{120}&space;\text{Accuracy}=\frac{TP+TN}{TP+TN+FP+FN}' alt='accuracy'>
+</div>
 ​
  
 Digunakan sebagai gambaran umum terhadap performa model, namun tidak cocok sebagai metrik utama dalam kasus dengan data tidak seimbang karena dapat menyesatkan.
@@ -344,9 +345,9 @@ Digunakan sebagai gambaran umum terhadap performa model, namun tidak cocok sebag
 
 Formula:
 
-$$ 
-   \text{Precision} = \frac{TP}{TP + FP} 
-   $$
+<div align='center'>
+  <img src='https://latex.codecogs.com/png.image?\dpi{120}&space;\text{Precision}=\frac{TP}{TP+FP}' alt='precision'>
+</div>
 ​
  
 Metrik ini mengukur seberapa banyak dari prediksi positif yang benar-benar relevan. Berguna untuk menghindari false alarms yang terlalu sering (False Positive).
@@ -354,10 +355,10 @@ Metrik ini mengukur seberapa banyak dari prediksi positif yang benar-benar relev
 <h4>3. Recall (Sensitivity)</h4>
 
 Formula:
+<div align='center'>
+  <img src='https://latex.codecogs.com/png.image?\dpi{120}&space;\text{Recall}=\frac{TP}{TP+FN}' alt='recall'>
+</div>
 
-$$ 
-   \text{Recall} = \frac{TP}{TP + FN} 
-   $$
 ​
  
 Sangat penting dalam konteks ini karena ingin memastikan kejadian "alert" tidak terlewatkan (minimalkan False Negative).
@@ -366,10 +367,9 @@ Sangat penting dalam konteks ini karena ingin memastikan kejadian "alert" tidak 
 
 Formula:
 
-$$ 
-   \text{F4} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}} 
-   $$
-​
+<div align='center'>
+  <img src='https://latex.codecogs.com/png.image?\dpi{120}&space;F1=2\cdot\frac{\text{Precision}\cdot\text{Recall}}{\text{Precision}+\text{Recall}}' alt='f-1 score'>
+</div>
  
 F4 Score menggabungkan precision dan recall dalam satu metrik harmonik, ideal untuk data imbalance.
 
@@ -390,43 +390,60 @@ Mengukur seberapa baik model memprediksi probabilitas yang mendekati nilai seben
 Memberikan gambaran menyeluruh tentang distribusi prediksi benar/salah dari masing-masing kelas.
 
 ## Results
-**Logitic Regression 📈**
+**Logistic Regression 📈**
+
 Berikut adalah hasil confusion matrix dari Logistic Regression baseline model sebelum dituning dan ROC-AUC Curve.
 
-![Hasil Model Baseline Logistic Regression](../ML_Terapan/assets/conf_Mat_LogReg_1.png)
-![ROC Curve Basemodel Logistic Regression](../ML_Terapan/assets/ROC_LogReg_1.png)
+<div style="display: flex; gap: 10px;">
+  <img src="assets/conf_Mat_LogReg_1.png" alt="Image 1" width="48%" height='100%'>
+  <img src="assets/ROC_LogReg_1.png" alt="Image 2" width="48%" height='100%'>
+</div>
 
 Ketika dianalisa, ternyata terdapat fitur yang memiliki signifikansi yang lebih besar daripada fitur lainnya
 
-![Importance Matrix](../ML_Terapan/assets/importance_LogReg_1.png)
+<div align='center'>
+  <img src='assets/importance_LogReg_1.png'>
+</div>
 
 Kemudian melakukan hyper parameter tuning dan mendapatkan hasil sebagai berikut:
 
-![Hasil Model Baseline Logistic Regression](../ML_Terapan/assets/conf_Mat_LogReg_2.png)
-![ROC Curve Basemodel Logistic Regression](../ML_Terapan/assets/ROC_LogReg_2.png)
+<div style="display: flex; gap: 10px;">
+  <img src="assets/conf_Mat_LogReg_2.png" alt="Image 3" width="48%" height='100%'>
+  <img src="assets/ROC_LogReg_2.png" alt="Image 4" width="48%" height='100%'>
+</div>
 
 Ternyata ketika dilakukan Grid Search CV, terdapat peningkatan performa estimator dan juga nilai ROC sekaligus signifikasi fitur pada model. Terlihat fitur `Kategori_Tekanan_Darah` meningkat bahkan melampaui `Oxygen Saturation (SpO2%).
 
-![Importance Matrix](../ML_Terapan/assets/importance_LogReg_2.png)
+<div align='center'>
+  <img src='assets/importance_LogReg_2.png'>
+</div>
 
 **Decision Tree 🌳**
 Model baseline ini menunjukkan performa yang cukup baik dalam mengenali kelas mayoritas, namun masih memiliki kelemahan dalam mendeteksi kelas minoritas (Alert Triggered = True), yang ditunjukkan dengan nilai recall yang masih cukup rendah. Selain itu, model juga menunjukkan overfitting ringan karena performa pada training set lebih tinggi dibandingkan test set.
 
-![Hasil Model Baseline Logistic Regression](../ML_Terapan/assets/ConfMat-DT_1.png)
-![ROC Curve Basemodel Logistic Regression](../ML_Terapan/assets/ROC-DT_1.png)
+<div style="display: flex; gap: 10px;">
+  <img src="assets/ConfMat-DT_1.png" alt="Image 5" width="48%" height='100%'>
+  <img src="assets/ROC-DT_1.png" alt="Image 6" width="48%" height='100%'>
+</div>
 
 Sama dengan model sebelumnya, ternyata terdapat fitur yang memiliki signifikansi yang lebih besar daripada fitur lainnya
 
-![Importance Matrix](../ML_Terapan/assets/importance_DT_1.png)
+<div align='center'>
+  <img src='assets/importance_DT_1.png'>
+</div>
 
 Kemudian melakukan hyper parameter tuning dengan Grid Search CV dan mendapatkan hasil sebagai berikut:
 
-![Hasil Model Baseline Logistic Regression](../ML_Terapan/assets/ConfMat-DT_1.png)
-![ROC Curve Basemodel Logistic Regression](../ML_Terapan/assets/ROC-DT_2.png)
+<div style="display: flex; gap: 10px;">
+  <img src="assets/ConfMat-DT_1.png" alt="Image 5" width="48%" height='100%'>
+  <img src="assets/ROC-DT_2.png" alt="Image 6" width="48%" height='100%'>
+</div>
 
 Sama dengan model sebelumnya, terdapat peningkatan pada nilai ROC-AUC dan akurasi.
 
-![Importance Matrix](../ML_Terapan/assets/importance_DT_2.png)
+<div align='center'>
+  <img src='assets/importance_DT_2.png'>
+</div>
 
 Secara keseluruhan, model Decision Tree berhasil ditingkatkan melalui tuning, menghasilkan model yang lebih akurat dan sensitif, serta memberikan insight yang lebih kuat terhadap fitur-fitur penting. Hal ini menjadikan Decision Tree sebagai kandidat kuat untuk solusi akhir dalam proyek ini.
 
